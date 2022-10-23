@@ -1,6 +1,6 @@
 
 export default function Index() {
   return (
-    <h1>Comete la yuca</h1>
+    <h1>Comete mi yuca</h1>
   )
 }
