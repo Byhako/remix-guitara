@@ -70,10 +70,41 @@ main {
 }
 
 .header .navegacion a:hover,
-.active {
+.header .active {
   background-color: var(--primary);
 }
 
+/* Footer */
+
+.footer {
+  background-color: var(--black);
+  padding: 0.2rem 0;
+  margin-top: 2rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.footer .navegacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem
+}
+
+.footer .navegacion a,
+.footer .copyright {
+  color: var(--white);
+  font-size: 2.2rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footer .copyright {
+  text-align: center;
+  font-size: 1.5rem;
+}
 
 @media screen and (min-width: 700px) {
   .header .barra {
@@ -83,5 +114,12 @@ main {
   .header .navegacion {
     margin-top: 0;
   }
-  
+  .footer .contenido {
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer .navegacion {
+    flex-direction: row;
+  }
+
 }
