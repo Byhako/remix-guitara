@@ -1,16 +1,11 @@
-import {
-  Meta,
-  Links
-} from '@remix-run/react'
-
+import { Meta, Links, Outlet, useCatch, Scripts, LiveReload } from '@remix-run/react'
 import styles from './styles/index.css'
-
+import Header from './components/header'
 
 export default function App() {
-
   return (
     <Document>
-      <h1>Mira mi yuca.</h1>
+      <Outlet />
     </Document>
   )
 }
@@ -51,7 +46,6 @@ export function links() {
   ]
 }
 
-
 function Document({ children }) {
   return (
     <html lang="es">
@@ -60,8 +54,32 @@ function Document({ children }) {
         <Links />
       </head>
       <body>
+        <Header />
         {children}
+        <Scripts />
+        <LiveReload />
       </body>
     </html>
   )
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  return (
+    <html>
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <h1>
+          {caught.status} {caught.statusText}
+        </h1>
+
+        <h3>Aqui no hay nada, no invente.</h3>
+      </body>
+    </html>
+  );
 }
