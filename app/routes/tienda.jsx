@@ -1,10 +1,10 @@
 import { useLoaderData } from '@remix-run/react'
 import { getguitarras } from '~/models/guitarras.server'
 import { Guitarra } from '~/components/guitarra'
+import styles from '~/styles/guitarras.css'
 
 export default function Tienda() {
   const guitarras = useLoaderData()
-
   return (
     <main className="contenedor">
       <h2 className="heading">Nuestra colección</h2>
@@ -20,6 +20,7 @@ export function meta() {
   return (
     {
       title: 'GuitarLa - Tienda',
+      description: 'Catalogo de guitarras'
     }
   )
 }
@@ -27,4 +28,13 @@ export function meta() {
 export async function loader() {
   const guitaras = await getguitarras()
   return guitaras.data
+}
+
+export function links() {
+  return [
+    {
+      rel:'stylesheet',
+      href: styles
+    }
+  ]
 }
