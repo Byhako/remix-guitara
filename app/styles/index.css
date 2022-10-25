@@ -74,6 +74,26 @@ main {
   background-color: var(--primary);
 }
 
+.enlace {
+  margin-top: 2rem;
+  display: block;
+  outline: none;
+  background-color: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: background-color 400ms;
+  box-shadow: 5px 5px 11px 0px #838282;
+}
+
+
+.enlace:hover {
+  background-color: var(--primary);
+}
+
 /* Footer */
 
 .footer {

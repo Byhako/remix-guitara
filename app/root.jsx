@@ -65,6 +65,8 @@ function Document({ children }) {
   )
 }
 
+// Manejo de errores
+
 export function CatchBoundary() {
   const caught = useCatch();
 
@@ -76,12 +78,37 @@ export function CatchBoundary() {
         <Links />
       </head>
       <body>
-        <h1>
-          {caught.status} {caught.statusText}
-        </h1>
+        <Document>
+          <h1 className='error'>
+            {caught.status} {caught.statusText}
+          </h1>
 
-        <h3>Aqui no hay nada, no invente.</h3>
+          <h3>Aqui no hay nada, no invente.</h3>
+        </Document>
       </body>
     </html>
   );
 }
+
+export function ErrorBoundary({ error }) {
+
+  return (
+    <html>
+      <head>
+        <title>Error</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Document>
+          <h1 className='error'>
+            {error.status} {error.statusText}
+          </h1>
+
+          <h3>A ocurrido un error. 😪</h3>
+        </Document>
+      </body>
+    </html>
+  );
+}
+

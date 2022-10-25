@@ -37,25 +37,6 @@
   font-weight: 900;
 }
 
-.guitarra .enlace {
-  margin-top: 2rem;
-  display: block;
-  outline: none;
-  background-color: var(--black);
-  color: var(--white);
-  text-decoration: none;
-  text-align: center;
-  padding: 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 900;
-  transition: background-color 400ms;
-  box-shadow: 5px 5px 11px 0px #838282;
-}
-
-
-.guitarra .enlace:hover {
-  background-color: var(--primary);
-}
 
 @media screen and (min-width: 700px) {
   .guitarras-grid {

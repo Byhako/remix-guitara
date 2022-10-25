@@ -6,7 +6,7 @@ export default function Guitarra() {
   const guitarra = useLoaderData()
   if (!guitarra.data.length) {
     return (
-      <h2>No existe esta guitarra</h2>
+      <h2 style={{textAlign: 'center'}}>No existe esta guitarra</h2>
     )
   }
 
