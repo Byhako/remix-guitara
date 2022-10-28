@@ -10,7 +10,7 @@ export default function Bolg({ data }) {
         <h3>{titulo}</h3>
         <p className="fecha">Publicado: {formatDate(publishedAt)}</p>
         <p className="resumen">{contenido}</p>
-        <Link className="enlace" to={`/post/${url}`}>Leer Entrada</Link>
+        <Link className="enlace" to={`/blog/${url}`}>Leer Entrada</Link>
       </div>
     </article>
   )

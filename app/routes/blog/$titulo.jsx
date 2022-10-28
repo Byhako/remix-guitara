@@ -1,7 +1,6 @@
 import { getBlog } from '~/models/blog.server'
 import { useLoaderData } from '@remix-run/react'
 import { formatDate } from '~/utils/helpers'
-import styles from '~/styles/blog.css'
 
 export default function Blog() {
   const blog = useLoaderData()
@@ -14,14 +13,14 @@ export default function Blog() {
 
   const { imagen, titulo, contenido, publishedAt } = blog?.data[0]?.attributes
   return (
-    <main className='contenedor post mt-3'>
+    <div className='post mt-3'>
       <img src={imagen?.data?.attributes?.url} alt='blog' className="imagen" />
       <div className="contenido">
         <h3>{titulo}</h3>
         <p className="fecha">Publicado: {formatDate(publishedAt)}</p>
         <p className="texto">{contenido}</p>
       </div>
-    </main>
+    </div>
   )
 }
 
@@ -29,15 +28,6 @@ export async function loader({ params }) {
   const { titulo } = params
   const blog = await getBlog(titulo)
   return blog
-}
-
-export function links() {
-  return [
-    {
-      rel: 'stylesheet',
-      href: styles
-    }
-  ]
 }
 
 export function meta({ data }) {
