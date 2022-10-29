@@ -6,6 +6,7 @@ export default function Guitarra() {
   const guitarra = useLoaderData()
   const { agregarCarrito } = useOutletContext()
   const [cantidad, setCantidad] = useState(0)
+  const [showmessage, setShowmessage] = useState(false)
   if (!guitarra.data.length) {
     return (
       <h2 style={{textAlign: 'center'}}>No existe esta guitarra</h2>
@@ -22,6 +23,8 @@ export default function Guitarra() {
       return
     }
 
+    setShowmessage(true)
+
     const guitarraSelect = {
       id: guitarra.data[0].id,
       imagen: imagen.data.attributes.url,
@@ -31,7 +34,10 @@ export default function Guitarra() {
     }
 
     agregarCarrito(guitarraSelect)
+    setTimeout(() => setShowmessage(false), 2000)
   }
+
+
   return (
     <div className='guitarra'>
       <img src={imagen?.data?.attributes?.url} alt="imagen" className="imagen" />
@@ -62,6 +68,11 @@ export default function Guitarra() {
           />
         </form>
       </div>
+
+      {showmessage && (
+        <p className='message'>Guitarra agregada al carrito</p>
+      )}
+
     </div>
   )
 }

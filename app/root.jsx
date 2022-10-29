@@ -1,16 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Meta, Links, Outlet, useCatch, Scripts, LiveReload } from '@remix-run/react'
 import styles from './styles/index.css'
 import Header from './components/header'
 import Footer from './components/footer'
 
 export default function App() {
-  const [carrito, setCarrito] = useState([])
+  const carritoLs = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('carrito')) : null
+  const [carrito, setCarrito] = useState(carritoLs ?? [])
+
+  useEffect(() => {
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+  }, [carrito])
 
   const agregarCarrito = (guitarra) => {
     let oldRegister = -1;
 
-    carrito.forEach((guitarraState, index) => {
+    carrito?.forEach((guitarraState, index) => {
       if (guitarraState.id === guitarra.id) oldRegister = index
     })
     if (oldRegister > -1) {
@@ -32,12 +37,18 @@ export default function App() {
     setCarrito(newCarrito)
   }
 
+  const eliminarGuitarra = (id) => {
+    const newCarrito = carrito.filter(item => item.id !== id)
+    setCarrito(newCarrito)
+  }
+
   return (
     <Document>
       <Outlet context={{
         agregarCarrito,
         carrito,
-        actualizarCantidad
+        actualizarCantidad,
+        eliminarGuitarra
       }} />
     </Document>
   )
