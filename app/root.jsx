@@ -1,12 +1,44 @@
+import { useState } from 'react'
 import { Meta, Links, Outlet, useCatch, Scripts, LiveReload } from '@remix-run/react'
 import styles from './styles/index.css'
 import Header from './components/header'
 import Footer from './components/footer'
 
 export default function App() {
+  const [carrito, setCarrito] = useState([])
+
+  const agregarCarrito = (guitarra) => {
+    let oldRegister = -1;
+
+    carrito.forEach((guitarraState, index) => {
+      if (guitarraState.id === guitarra.id) oldRegister = index
+    })
+    if (oldRegister > -1) {
+      const newCarrito = [...carrito]
+      newCarrito[oldRegister] = guitarra
+      setCarrito(newCarrito)
+    } else {
+      setCarrito([...carrito, guitarra])
+    }
+  }
+
+  const actualizarCantidad = guitarra => {
+    const newCarrito = carrito.map(guitarraState => {
+      if (guitarraState.id === guitarra.id) {
+        guitarraState.cantidad = guitarra.cantidad
+      }
+      return guitarraState
+    })
+    setCarrito(newCarrito)
+  }
+
   return (
     <Document>
-      <Outlet />
+      <Outlet context={{
+        agregarCarrito,
+        carrito,
+        actualizarCantidad
+      }} />
     </Document>
   )
 }

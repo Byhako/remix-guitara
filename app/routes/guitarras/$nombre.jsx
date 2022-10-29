@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { getguitarra } from '~/models/guitarras.server'
-import { useLoaderData } from '@remix-run/react'
+import { useLoaderData, useOutletContext } from '@remix-run/react'
 
 export default function Guitarra() {
   const guitarra = useLoaderData()
+  const { agregarCarrito } = useOutletContext()
   const [cantidad, setCantidad] = useState(0)
   if (!guitarra.data.length) {
     return (
@@ -29,7 +30,7 @@ export default function Guitarra() {
       cantidad
     }
 
-    return guitarraSelect
+    agregarCarrito(guitarraSelect)
   }
   return (
     <div className='guitarra'>
